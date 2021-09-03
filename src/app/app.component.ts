@@ -30,6 +30,7 @@ export class AppComponent {
 
     this.panier.set(produit, this.panier.get(produit) as number + 1);
   }
+
   removeItem(value : any){
     console.log(value[1]);
     if(value[1] == 1){
@@ -38,5 +39,9 @@ export class AppComponent {
     } else {
       this.panier.set(value[0], value[1] as number - 1);
     }
+  }
+
+  formAction(value: any){
+    this.produits.push({id: value.originalTarget[0].value, img: value.originalTarget[2].value, nom: value.originalTarget[1].value, prix: value.originalTarget[3].value, type: value.originalTarget[4].value});
   }
 }
