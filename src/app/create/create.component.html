@@ -1,0 +1,14 @@
+<form [formGroup]="createForm" (ngSubmit)="handleSubmit()">
+    <mat-input formControlName="nom" label="Nom">
+        <div class="error" *ngIf="createForm.get('nom')?.errors?.required">
+            Le nom est obligatoire
+        </div>
+        <div class="error" *ngIf="createForm.get('nom')?.errors?.pattern">
+            Le nom du produit doit commencer par PROD
+        </div>
+    </mat-input>
+    <mat-input formControlName="prix" label="Prix unitaire" type="number"></mat-input>
+    <mat-input formControlName="type" label="Type de produit"></mat-input>
+    <mat-input formControlName="img" label="Image du produit"></mat-input>
+    <button type="submit" class="btn">Ajouter</button>
+</form>

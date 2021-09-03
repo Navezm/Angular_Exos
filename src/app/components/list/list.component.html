@@ -1,12 +1,4 @@
-<label for="1">Elements par page</label>
-<select id="1" (change)="newFilter($event.target)">
-  <option value="2">2</option>
-  <option value="4">4</option>
-  <option value="3">3</option>
-  <option value="8">8</option>
-  <option value="12">12</option>
-</select>
-
+<button (click)="index = index + 1">Next char</button>
 <table>
     <thead>
         <tr>
@@ -19,18 +11,31 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of items |customSlice:page:index">
+        <tr *ngFor="let item of items |matPagination:page:size">
             <td>{{ item.id }}</td>
-            <td>{{ item.nom |ucfirst}}</td>
+            <td>{{ item.nom |ucfirst }}</td>
             <td><img class="responsive-img" [src]="item.img"></td>
             <td>{{ item.prix }}</td>
-            <td>{{ item.type |ucfirst}}</td>
+            <td>{{ item.type |ucfirst }}</td>
             <td>
-                <button class="btn brown lighten-1" (click)="emitBuyEvent(item)">Acheter</button>
+                <button class="btn" (click)="emitBuyEvent(item)">Acheter</button>
             </td>
         </tr>
     </tbody>
 </table>
+<select (change)="handleSizeChange($event)">
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="8">8</option>
+    <option value="10">10</option>
+</select>
 
-<app-pagination [pageNumber]="page" [amountDisplayed]="index" [longueurListe]="items.length" (up)="nextPage()" (down)="prevPage()" (selectPage)="selectPage($event)"></app-pagination>
-
+<mat-pagination
+    [length]="items.length"
+    [sizePage]="size"
+    [currentPage]="page"
+    (selectPage)="handleSelectPage($event)"
+    (previousPage)="handlePreviousPage()"
+    (nextPage)="handleNextPage()"
+></mat-pagination>

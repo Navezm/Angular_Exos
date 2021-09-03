@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UcfirstPipe } from 'src/app/pipes/ucfirst.pipe';
-import * as M from 'materialize-css';
 
 @Component({
   selector: 'app-list',
@@ -13,37 +12,31 @@ export class ListComponent implements OnInit {
   @Output("buy") buyEvent = new EventEmitter<any>();
 
   index = 2;
-  page = 1;
+  page = 0;
+  size = 2;
 
-  constructor(private ucFirst: UcfirstPipe) { }
+  constructor() { }
 
   ngOnInit(): void {
-    console.log(this.ucFirst.transform("hello"));
-  }
-
-  ngAfterViewInit() {
-    M.AutoInit();
   }
 
   emitBuyEvent(item: any) {
     this.buyEvent.emit(item.id);
   }
 
-  nextPage() {
+  handleSelectPage(page: number) {
+    this.page = page;
+  }
+  handlePreviousPage() {
+    this.page = this.page - 1;
+  }
+  handleNextPage() {
     this.page = this.page + 1;
   }
 
-  prevPage(){
-    this.page = this.page - 1;
-  }
-
-  newFilter(value: any) {
-
-    this.index = parseInt(value.value);
+  handleSizeChange({target}: Event) {
+    const select: HTMLSelectElement = target as HTMLSelectElement;
+    this.size = parseInt(select.value);
     this.page = 1;
-  }
-
-  selectPage(value : number){
-    this.page = value;
   }
 }

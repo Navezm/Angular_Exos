@@ -1,11 +1,26 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col s6">
             <app-list [items]="produits" (buy)="buyAction($event)"></app-list>
-            <app-form (formInfo)="formAction($event)"></app-form>
         </div>
         <div class="col s6">
-            <app-basket [items]="panier" (remove)="removeItem($event)"></app-basket>
+            <app-basket [items]="panier"></app-basket>
+        </div>
+    </div>
+</div> -->
+<div class="container">
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <form [formGroup]="loginForm" (ngSubmit)="handleSignIn()">
+                <mat-input formControlName="username" label="Username" type="text"></mat-input>
+                <mat-input formControlName="password" label="Mots de passe" type="password"></mat-input>
+                <button type="submit" class="btn success">Sign in</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <app-create></app-create>
         </div>
     </div>
 </div>

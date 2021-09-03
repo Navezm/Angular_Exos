@@ -1,52 +1,54 @@
-import {
-  Component,
-  Input,
-  Output,
-  OnInit,
-  EventEmitter,
-  AfterViewInit
-} from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import * as M from 'materialize-css';
 
 @Component({
-  selector: 'app-pagination',
+  selector: 'mat-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit {
-  @Output("up") nextPage: any = new EventEmitter < any > ();
-  @Output("down") prevPage: any = new EventEmitter < any > ();
-  @Output("selectPage") selectPageEvent: any = new EventEmitter<any>();
+export class PaginationComponent implements OnInit, AfterViewInit {
+  private length: number = 0;
+  private sizePage: number = 10;
+  private currentPage: number = 1;
 
-  @Input("longueurListe") lengthlist: number = 0;
-  @Input("pageNumber") pageNumber: number = 1;
-  @Input("amountDisplayed") amountDisplayed: number = 2;
+  @Input('length') set Length(v: number) { this.length = v; }
+  @Input('sizePage') set SizePage(v: number) { this.sizePage = v; }
+  @Input('currentPage') set CurrentPage(v: number) { this.currentPage = v; }
+  
+  @Output("selectPage") selectPageEvent = new EventEmitter<number>();
+  @Output("nextPage") nextPageEvent = new EventEmitter<void>();
+  @Output("previousPage") previousPageEvent = new EventEmitter<void>();
+  
+  get Length(): number { return this.length; }
+  get SizePage(): number { return this.sizePage; }
+  get CurrentPage(): number { return this.currentPage; }
 
-  get AmountPages(): number {
-    return Math.ceil(this.lengthlist / this.amountDisplayed)
+  get Pages(): Array<any> {
+    const pages: any[] = [];
+
+    const nbPage = Math.ceil(this.Length / this.SizePage);
+    for(let i = 1; i <= nbPage; i++) { pages.push(i); }
+
+    return pages;
   }
 
-  get pagesArray(): number[] {
-    return new Array(this.AmountPages).fill(0).map((x, i) => i + 1);
+  constructor() { }
+
+  ngOnInit(): void {
   }
 
-  constructor() {}
+  ngAfterViewInit() {
+    M.AutoInit();
+  }
 
-  ngOnInit(): void {}
-
-  pageUp() {
-    if (this.pageNumber < this.AmountPages) {
-      this.nextPage.emit();
+  handlePrevious() {
+    if (this.CurrentPage > 1) {
+      this.previousPageEvent.emit();
     }
   }
-
-  pageDown() {
-    if (this.pageNumber > 1) {
-      console.log("pagedown pagination")
-      this.prevPage.emit();
+  handleNext() {
+    if (this.CurrentPage < this.Pages.length) {
+      this.nextPageEvent.emit();
     }
-  }
-
-  selectPage(value : number){
-    this.selectPageEvent.emit(value);
   }
 }

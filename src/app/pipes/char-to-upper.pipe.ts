@@ -6,11 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CharToUpperPipe implements PipeTransform {
 
   transform(value: string, index: number): string {
-    if (index > value.length - 1) {
-      index = 0;
-    }
     let a = value.split('');
-    a[index] = a[index].toUpperCase();
+    a[index % value.length] = a[index % value.length].toUpperCase();
 
     return a.join('');
   }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-basket',
@@ -7,7 +7,6 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class BasketComponent implements OnInit {
   @Input() items = new Map<any, number>();
-  @Output("remove") removeEvent = new EventEmitter<number>();
 
   get total(): number {
     let total = 0;
@@ -22,10 +21,6 @@ export class BasketComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  remove(product : any){
-    this.removeEvent.emit(product);
   }
 
 }

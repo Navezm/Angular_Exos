@@ -9,8 +9,9 @@ import { BasketComponent } from './components/basket/basket.component';
 import { UcfirstPipe } from './pipes/ucfirst.pipe';
 import { CharToUpperPipe } from './pipes/char-to-upper.pipe';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { CustomSlicePipe } from './pipes/custom-slice.pipe';
-import { FormComponent } from './components/form/form.component';
+import { MatPaginationPipe } from './pipes/mat-pagination.pipe';
+import { CreateComponent } from './create/create.component';
+import { InputComponent } from './forms/input/input.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,9 @@ import { FormComponent } from './components/form/form.component';
     UcfirstPipe,
     CharToUpperPipe,
     PaginationComponent,
-    CustomSlicePipe,
-    FormComponent
+    MatPaginationPipe,
+    CreateComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
@@ -30,8 +32,7 @@ import { FormComponent } from './components/form/form.component';
     ReactiveFormsModule
   ],
   providers: [
-    UcfirstPipe,
-    CustomSlicePipe
+    UcfirstPipe
   ],
   bootstrap: [AppComponent]
 })
