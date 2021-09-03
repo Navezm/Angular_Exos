@@ -1,0 +1,12 @@
+{
+    "produits": [
+        {"id": 1, "img": "https://img.unocero.com/2020/11/baby-yoda-spacex-viaje-1200x600.jpg", "nom": "T-Shirt flocker", "prix": 42, "typeId":2, "type": "Mug"},
+        {"id": 2, "img": "https://th.bing.com/th/id/OIP.rhdReUUerGjIrv4MkPLTPwHaE7?pid=ImgDet&rs=1", "nom": "Pull flocker", "prix": 42, "typeId":1, "type": "Vetements"},
+        {"id": 3, "img": "https://cdn2-www.comingsoon.net/assets/uploads/gallery/comic-con-2017-floor-2/comiccon0001.jpg", "nom": "Calçon flocker", "typeId":1, "prix": 42, "type": "Vetements"},
+        {"id": 4, "img": "https://img.ohmirevista.com/s3/esomm/1280/insolito/default_2020-10-01_c028febe-8ef4-4f55-b00b-282b7172799e.jpeg", "nom": "String flocker", "typeId":1, "prix": 42, "type": "Vetements"}
+    ],
+    "types": [
+        {"id": 1, "nom": "Vetement"},
+        {"id": 2, "nom": "Mug"}
+    ]
+}

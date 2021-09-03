@@ -1,0 +1,35 @@
+<label for="1">Elements par page</label>
+<select id="1" (change)="newFilter($event.target)">
+  <option value="2">2</option>
+  <option value="4">4</option>
+  <option value="3">3</option>
+  <option value="8">8</option>
+  <option value="12">12</option>
+</select>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NOM</th>
+            <th>IMG</th>
+            <th>PRIX</th>
+            <th>TYPE</th>
+            <th>ACTIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items |customSlice:page:index">
+            <td>{{ item.id }}</td>
+            <td>{{ item.nom |ucfirst}}</td>
+            <td><img class="responsive-img" [src]="item.img"></td>
+            <td>{{ item.prix }}</td>
+            <td>{{ item.type |ucfirst}}</td>
+            <td>
+                <button class="btn" (click)="emitBuyEvent(item)">Acheter</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<app-pagination [pageNumber]="page" [amountDisplayed]="index" [longueurListe]="items.length" (up)="nextPage()" (down)="prevPage()" (selectPage)="selectPage($event)"></app-pagination>

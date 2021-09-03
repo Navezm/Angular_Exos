@@ -1,0 +1,7 @@
+
+  <ul class="pagination">
+    <li [class]="{'disabled': pageNumber==1, 'wave-effect': true}"><a href="#!" (click)="pageDown()"><i class="material-icons">chevron_left</i></a></li>
+    <li *ngFor="let page of pagesArray" class="waves-effect" [class.active]="pageNumber == page"><a href="#!" (click)="selectPage(page)">{{page}}</a></li>
+    <li [class]="{'disabled': pageNumber==AmountPages, 'wave-effect': true}"><a href="#!" (click)="pageUp()"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
+

@@ -1,0 +1,27 @@
+<table class="highlight">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Item Name</th>
+    <th>Nb Item</th>
+    <th>Item Price</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let entry of items.entries()" (click)="remove(entry)">
+    <ng-container *ngIf="entry[0] as key">
+      <td>{{ key.id }}</td>
+      <td>{{ key.nom }}</td>
+
+      <ng-container *ngIf="entry[1] as value">
+        <td>{{ value }}</td>
+        <td>{{ key.prix * value | currency}}</td>
+      </ng-container>
+    </ng-container>
+  </tr>
+  </tbody>
+</table>
+
+
+<p>Total du panier: {{ total | currency}}</p>
