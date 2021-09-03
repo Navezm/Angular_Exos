@@ -3,22 +3,37 @@
     <div class="input-filed">
         <label for="id">Id</label>
         <input formControlName="id" type="number" name="id" id="id">
+        <div *ngIf="addProductForm.get('id')?.errors?.required">
+            <span class="red-text">L'id est obligatoire</span>
+        </div>
     </div>
     <div class="input-filed">
         <label for="id">Name</label>
         <input formControlName="name" type="text" name="name" id="name">
+        <div *ngIf="addProductForm.get('name')?.errors?.required">
+            <span class="red-text">Le name est obligatoire</span>
+        </div>
     </div>
     <div class="input-filed">
         <label for="id">Url Image</label>
         <input formControlName="img" type="text" name="img" id="img">
+        <div *ngIf="addProductForm.get('img')?.errors?.required">
+            <span class="red-text">L'url est obligatoire</span>
+        </div>
     </div>
     <div class="input-filed">
         <label for="price">Price</label>
         <input formControlName="price" type="number" name="price" id="price">
+        <div *ngIf="addProductForm.get('price')?.errors?.required">
+            <span class="red-text">Le prix est obligatoire</span>
+        </div>
     </div>
     <div class="input-filed">
         <label for="type">Type</label>
         <input formControlName="type" type="text" name="type" id="type">
+        <div *ngIf="addProductForm.get('type')?.errors?.required">
+            <span class="red-text">Le type est obligatoire</span>
+        </div>
     </div>
     <button class="btn" type="submit">New Product</button>
 </form>
